@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="excel-file" type="file">
+    <br/>
+    <button id="submit">submit</button>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="application/javascript">
+
+ window.onload = function () {
+     const input = document.getElementById('excel-file');
+     const submitBtn = document.getElementById('submit');
+     let file = null;
+     input.addEventListener('change', () => {
+         file = input.files[0];
+         // 处理Excel文件
+     });
+
+     submitBtn.addEventListener('click',()=>{
+         console.log('submitBtn click');
+         console.log('file:',file);
+         readerExcel(file);
+
+     })
+
+     function readerExcel(file) {
+         const reader = new FileReader();
+         reader.onload = (event) => {
+             const data = new Uint8Array(event.target.result);
+             const workbook = XLSX.read(data, { type: 'array' });
+             const sheetName = workbook.SheetNames[0];
+             const worksheet = workbook.Sheets[sheetName];
+             process(worksheet);
+             // 处理worksheet数据
+         };
+         reader.readAsArrayBuffer(file);
+     }
+
+
+     function process(worksheet) {
+         console.log(worksheet)
+         const cellValue = worksheet['A1'].v;
+         const range = XLSX.utils.decode_range(worksheet['!ref']);
+         for (let rowNum = range.s.r; rowNum <= range.e.r; rowNum++) {
+             for (let colNum = range.s.c; colNum <= range.e.c; colNum++) {
+                 const address = XLSX.utils.encode_cell({ r: rowNum, c: colNum });
+                 if (!worksheet[address]) continue;
+                 const cellValue = worksheet[address].v;
+                 // 处理单元格数据
+             }
+         }
+     }
+
+ }
+
+</script>
+</html>

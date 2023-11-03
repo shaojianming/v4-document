@@ -1,0 +1,39 @@
+{
+  "name": "theme-vdoing-doc",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && node --max_old_space_size=4096 ./node_modules/vuepress/cli.js dev docs",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && node --max_old_space_size=4096 ./node_modules/vuepress/cli.js build docs",
+    "deploy": "bash deploy.sh",
+    "updateTheme": "npm uninstall vuepress-theme-vdoing && rm -rf node_modules && npm i && npm i vuepress-theme-vdoing -D",
+    "editFm": "node utils/editFrontmatter.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "dayjs": "^1.9.7",
+    "inquirer": "^7.1.0",
+    "json2yaml": "^1.1.0",
+    "vuepress": "^1.4.1",
+    "vuepress-plugin-baidu-tongji": "^1.0.1",
+    "vuepress-plugin-demo-block": "^0.7.2",
+    "vuepress-plugin-element-ui": "^1.1.0",
+    "vuepress-plugin-one-click-copy": "^1.0.2",
+    "vuepress-plugin-shiki": "^0.2.7",
+    "vuepress-plugin-thirdparty-search": "^1.0.2",
+    "vuepress-plugin-zooming": "^1.1.7",
+    "vuepress-theme-vdoing": "^1.8.1",
+    "yamljs": "^0.3.0"
+  },
+  "dependencies": {
+    "@vuepress/plugin-shiki": "^2.0.0-beta.27",
+    "async-validator": "1.11.5",
+    "axios": "^0.27.2",
+    "codemirror": "^5.63.3",
+    "crypto-js": "^4.1.1",
+    "element-ui": "^2.15.6",
+    "v-jsoneditor": "^1.4.5",
+    "vue-json-editor": "^1.4.3",
+    "vue-json-viewer": "2",
+    "yarn": "^1.22.19"
+  }
+}
