@@ -7,7 +7,7 @@ module.exports = {
     title: "Merchant Access Guide",
     dest: 'dist',
     description: '',
-    base, // '/<仓库名>/'， 默认'/'
+    base:'v4-document',
     head: [ // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
         ['link', {rel: 'icon', href: 'https://pay-cdn.pingpongx.com/production-fra/acquirer-web/favicon.ico'}], //favicons，资源放在public文件夹
         ['meta', {name: 'keywords', content: 'ping-pong,PingPong,pay'}],
